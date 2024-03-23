@@ -22,5 +22,9 @@ router.get('/banners', [BannersController, 'getAllBanner'])
 router.group(() => {
   router.get('/services', [ThriveInServicesController, 'getAllServiceCategory'])
   router.get('/list-services/:category', [ThriveInServicesController, 'getAllServicesByCategory'])
-  router.get('/detail-services/:serviceId', [ThriveInServicesController, 'getServiceById'])
+  router.get('/detail-services/:service_id', [ThriveInServicesController, 'getServiceById'])
+  router.get('/detail-services/:service_id/portfolio', [
+    ThriveInServicesController,
+    'getAllServicePorfolio',
+  ])
 })

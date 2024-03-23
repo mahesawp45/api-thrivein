@@ -19,7 +19,16 @@ export default class ThriveInServicesController {
   }
 
   getServiceById = async ({ params }: HttpContext) => {
-    const data = await this.thriveInServiceService.getServiceById(params.serviceId)
+    const data = await this.thriveInServiceService.getServiceById(params.service_id)
+    return data
+  }
+
+  getAllServicePorfolio = async ({ params }: HttpContext) => {
+    const data = await this.thriveInServiceService.getAllServicePorfolio(
+      params.service_id,
+      params.size,
+      params.page
+    )
     return data
   }
 }
