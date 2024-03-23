@@ -8,6 +8,7 @@
 */
 
 const BannersController = () => import('#controllers/banners_controller')
+const ThriveInServicesController = () => import('#controllers/thrive_in_services_controller')
 import router from '@adonisjs/core/services/router'
 
 router.get('/', async () => {
@@ -17,3 +18,9 @@ router.get('/', async () => {
 })
 
 router.get('/banners', [BannersController, 'getAllBanner'])
+
+router.group(() => {
+  router.get('/services', [ThriveInServicesController, 'getAllServiceCategory'])
+  router.get('/list-services/:category', [ThriveInServicesController, 'getAllServicesByCategory'])
+  router.get('/detail-services/:serviceId', [ThriveInServicesController, 'getServiceById'])
+})
