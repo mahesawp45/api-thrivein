@@ -5,10 +5,23 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
-
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table.increments('id').notNullable()
+      table.string('order_id').notNullable()
+      table.string('consultation_id').notNullable()
+      table.string('user_id').notNullable()
+      table.string('name').notNullable()
+      table.string('invoice').notNullable()
+      table.string('address').notNullable()
+      table.integer('discount').nullable()
+      table.boolean('is_order_now').notNullable()
+      table.string('payment_method').notNullable()
+      table.string('status').notNullable()
+      table.string('title').notNullable()
+      table.integer('total_order').notNullable()
+      table.integer('total_pay').notNullable()
+      table.dateTime('transaction_date').notNullable()
+      table.timestamp('created_at').notNullable()
+      table.timestamp('updated_at').nullable()
     })
   }
 
