@@ -1,6 +1,5 @@
 type OrderRequest = {
-  consultation_id: string
-  title: string
+  service_id: string
   payment_method: string
   total_order: number
   discount: number

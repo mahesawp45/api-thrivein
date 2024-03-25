@@ -9,7 +9,7 @@ export default class Order extends BaseModel {
   declare address: string
 
   @column()
-  declare consultation_id: string
+  declare service_id: string
 
   @column()
   declare discount: number
