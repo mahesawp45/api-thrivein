@@ -35,6 +35,9 @@ export default class OrderService {
 
       return order
     } catch (error) {
+      console.log('====================================')
+      console.log('ERROR ORDER -> ', error)
+      console.log('====================================')
       throw error
     }
   }

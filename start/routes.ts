@@ -10,6 +10,7 @@
 const BannersController = () => import('#controllers/banners_controller')
 const ThriveInServicesController = () => import('#controllers/thrive_in_services_controller')
 const OrdersController = () => import('#controllers/orders_controller')
+const AuthController = () => import('#controllers/auth_controller')
 import router from '@adonisjs/core/services/router'
 
 router.get('/', async () => {
@@ -32,4 +33,9 @@ router.group(() => {
 
 router.group(() => {
   router.post('/order-now', [OrdersController, 'orderNow'])
+})
+
+router.group(() => {
+  router.post('/register-admin', [AuthController, 'registerAdmin'])
+  router.post('/login-admin', [AuthController, 'loginAdmin'])
 })

@@ -1,17 +1,17 @@
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
 export default class extends BaseSchema {
-  protected tableName = 'auth_access_tokens'
+  protected tableName = 'auth_admin_access_tokens'
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
+      table.increments('id').notNullable()
       table
         .integer('tokenable_id')
         .notNullable()
         .unsigned()
         .references('user_id')
-        .inTable('users')
+        .inTable('admins')
         .onDelete('CASCADE')
 
       table.string('type').notNullable()
