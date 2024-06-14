@@ -8,6 +8,23 @@ import { HttpContext } from '@adonisjs/core/http'
 export default class ThriveInServicesController {
   constructor(protected thriveInServiceService: ThriveInServiceService) {}
 
+  createServiceCategory = async ({ request, response }: HttpContext) => {
+    try {
+      const categoryRequest = request.only([
+        'category',
+        'description',
+        'icon_url',
+        'title',
+        'color',
+      ])
+      const category = await this.thriveInServiceService.createServiceCategory({
+        ...categoryRequest,
+      } as any)
+      return response.status(201).json(category)
+    } catch (error) {
+      return response.status(400).json({ message: error.message })
+    }
+  }
   getAllServiceCategory = async () => {
     const data = await this.thriveInServiceService.getAllServiceCategory()
     return data

@@ -35,7 +35,12 @@ router.group(() => {
   router.post('/order-now', [OrdersController, 'orderNow'])
 })
 
+// Admin
 router.group(() => {
   router.post('/register-admin', [AuthController, 'registerAdmin'])
   router.post('/login-admin', [AuthController, 'loginAdmin'])
+})
+
+router.group(() => {
+  router.post('/create-category', [ThriveInServicesController, 'createServiceCategory'])
 })

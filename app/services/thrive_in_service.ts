@@ -1,9 +1,26 @@
+import CategoryRequest from '#models/request/category_request'
 import ThriveInCategoryService from '#models/thrive_in_category_service'
 import ThriveInPorfolioService from '#models/thrive_in_porfolio_service'
 import ThriveInService from '#models/thrive_in_service'
 import db from '@adonisjs/lucid/services/db'
 
 export default class ThriveInServiceService {
+  createServiceCategory = async (request: CategoryRequest): Promise<ThriveInCategoryService> => {
+    try {
+      const category: ThriveInCategoryService = await ThriveInCategoryService.create({
+        category: request.category,
+        color: request.color,
+        description: request.discription,
+        icon_url: request.icon_url,
+        title: request.title,
+      })
+      return category
+    } catch (error) {
+      console.error('Error Add Category:', error)
+      throw error
+    }
+  }
+
   getAllServiceCategory = async (): Promise<ThriveInCategoryService[]> => {
     try {
       const categories: ThriveInCategoryService[] = await ThriveInCategoryService.all()
