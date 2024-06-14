@@ -19,9 +19,8 @@ router.get('/', async () => {
   }
 })
 
-router.get('/banners', [BannersController, 'getAllBanner'])
-
 router.group(() => {
+  router.get('/banners', [BannersController, 'getAllBanner'])
   router.get('/services', [ThriveInServicesController, 'getAllServiceCategory'])
   router.get('/list-services/:category', [ThriveInServicesController, 'getAllServicesByCategory'])
   router.get('/detail-services/:service_id', [ThriveInServicesController, 'getServiceById'])
@@ -43,4 +42,5 @@ router.group(() => {
 
 router.group(() => {
   router.post('/create-category', [ThriveInServicesController, 'createServiceCategory'])
+  router.post('/create-banner', [BannersController, 'createBanner'])
 })
