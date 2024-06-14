@@ -1,6 +1,6 @@
 // import type { HttpContext } from '@adonisjs/core/http'
 
-import OrderRequest from '#requests/order_request'
+import OrderRequest from '#models/request/order_request'
 import OrderService from '#services/order_service'
 import { HttpContext } from '@adonisjs/core/http'
 

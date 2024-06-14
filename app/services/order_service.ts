@@ -1,6 +1,6 @@
 import Order from '#models/order'
 import ThriveInService from '#models/thrive_in_service'
-import OrderRequest from '#requests/order_request'
+import OrderRequest from '#models/request/order_request'
 import { DateTime } from 'luxon'
 import { randomUUID } from 'node:crypto'
 

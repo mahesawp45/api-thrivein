@@ -7,9 +7,15 @@ import { inject } from '@adonisjs/core'
 export default class BannersController {
   constructor(protected bannerService: BannerService) {}
 
-  getAllBanner = async () => {
-    const data = await this.bannerService.getAllBanner()
-    return data
+  getAllBanner = async ({ response }: HttpContext) => {
+    try {
+      const banners = await this.bannerService.getAllBanner()
+      return response.status(201).json({
+        banners,
+      })
+    } catch (error) {
+      return response.status(400).json({ message: error.message })
+    }
   }
 
   createBanner = async ({ request, response }: HttpContext) => {

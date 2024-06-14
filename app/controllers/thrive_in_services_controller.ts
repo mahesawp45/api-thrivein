@@ -28,8 +28,8 @@ export default class ThriveInServicesController {
 
   getAllServiceCategory = async ({ response }: HttpContext) => {
     try {
-      const data = await this.thriveInServiceService.getAllServiceCategory()
-      return response.status(200).json(data)
+      const services = await this.thriveInServiceService.getAllServiceCategory()
+      return response.status(200).json({ services })
     } catch (error) {
       return response.status(400).json({ message: error.message })
     }
