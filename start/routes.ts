@@ -12,6 +12,7 @@ const ThriveInServicesController = () => import('#controllers/thrive_in_services
 const OrdersController = () => import('#controllers/orders_controller')
 const AuthController = () => import('#controllers/auth_controller')
 const ArticlesController = () => import('#controllers/articles_controller')
+const UsersController = () => import('#controllers/users_controller')
 import router from '@adonisjs/core/services/router'
 
 router.get('/', async () => {
@@ -48,6 +49,7 @@ router.group(() => {
 })
 
 router.group(() => {
+  router.get('/users', [UsersController, 'getAllUsers'])
   router.post('/create-category', [ThriveInServicesController, 'createServiceCategory'])
   router.post('/create-banner', [BannersController, 'createBanner'])
   router.post('/create-article', [ArticlesController, 'createArticle'])

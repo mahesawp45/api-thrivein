@@ -55,6 +55,7 @@ export default class ThriveInServiceService {
         .where('category', category)
       return services
     } catch (error) {
+      console.error('Error Get Services:', error)
       throw error
     }
   }
@@ -64,6 +65,23 @@ export default class ThriveInServiceService {
       const service: ThriveInService | null = await ThriveInService.findBy('service_id', service_id)
       return service
     } catch (error) {
+      console.error('Error Get Service by Id:', error)
+      throw error
+    }
+  }
+
+  createPortfolio = async (request: ThriveInServiceRequest): Promise<ThriveInService> => {
+    try {
+      const service: ThriveInService = await ThriveInService.create({
+        category: request.category,
+        price: request.price,
+        description: request.description,
+        icon_url: request.icon_url,
+        title: request.title,
+      })
+      return service
+    } catch (error) {
+      console.error('Error Add Service:', error)
       throw error
     }
   }
@@ -80,6 +98,7 @@ export default class ThriveInServiceService {
         .paginate(page, size)
       return portofolio
     } catch (error) {
+      console.error('Error Get Portfolio:', error)
       throw error
     }
   }
