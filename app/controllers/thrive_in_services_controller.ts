@@ -35,9 +35,25 @@ export default class ThriveInServicesController {
     }
   }
 
-  getAllServicesByCategory = async ({ params }: HttpContext) => {
-    const data = await this.thriveInServiceService.getAllServicesByCategory(params.category)
-    return data
+  createService = async ({ request, response }: HttpContext) => {
+    try {
+      const serviceRequest = request.only(['category', 'price', 'description', 'icon_url', 'title'])
+      const service = await this.thriveInServiceService.createService({
+        ...serviceRequest,
+      } as any)
+      return response.status(201).json(service)
+    } catch (error) {
+      return response.status(400).json({ message: error.message })
+    }
+  }
+
+  getAllServicesByCategory = async ({ params, response }: HttpContext) => {
+    try {
+      const services = await this.thriveInServiceService.getAllServicesByCategory(params.category)
+      return response.status(200).json({ 'list-services': services })
+    } catch (error) {
+      return response.status(400).json({ message: error.message })
+    }
   }
 
   getServiceById = async ({ params }: HttpContext) => {

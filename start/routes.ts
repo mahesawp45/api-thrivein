@@ -51,4 +51,5 @@ router.group(() => {
   router.post('/create-category', [ThriveInServicesController, 'createServiceCategory'])
   router.post('/create-banner', [BannersController, 'createBanner'])
   router.post('/create-article', [ArticlesController, 'createArticle'])
+  router.post('/create-service', [ThriveInServicesController, 'createService'])
 })

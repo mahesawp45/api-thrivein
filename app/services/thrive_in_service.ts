@@ -1,4 +1,5 @@
 import CategoryRequest from '#models/request/category_request'
+import ThriveInServiceRequest from '#models/request/service_request'
 import ThriveInCategoryService from '#models/thrive_in_category_service'
 import ThriveInPorfolioService from '#models/thrive_in_porfolio_service'
 import ThriveInService from '#models/thrive_in_service'
@@ -10,7 +11,7 @@ export default class ThriveInServiceService {
       const category: ThriveInCategoryService = await ThriveInCategoryService.create({
         category: request.category,
         color: request.color,
-        description: request.discription,
+        description: request.description,
         icon_url: request.icon_url,
         title: request.title,
       })
@@ -26,6 +27,23 @@ export default class ThriveInServiceService {
       const categories: ThriveInCategoryService[] = await ThriveInCategoryService.all()
       return categories
     } catch (error) {
+      console.error('Error Get All Category:', error)
+      throw error
+    }
+  }
+
+  createService = async (request: ThriveInServiceRequest): Promise<ThriveInService> => {
+    try {
+      const service: ThriveInService = await ThriveInService.create({
+        category: request.category,
+        price: request.price,
+        description: request.description,
+        icon_url: request.icon_url,
+        title: request.title,
+      })
+      return service
+    } catch (error) {
+      console.error('Error Add Service:', error)
       throw error
     }
   }

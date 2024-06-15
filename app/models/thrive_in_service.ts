@@ -3,13 +3,13 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 
 export default class ThriveInService extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
-
-  @column()
-  declare service_id: string
+  declare service_id: number
 
   @column()
   declare title: string
+
+  @column()
+  declare price: number
 
   @column()
   declare description: string
