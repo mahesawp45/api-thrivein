@@ -21,6 +21,11 @@ router.get('/', async () => {
 })
 
 router.group(() => {
+  router.post('/register', [AuthController, 'registerUser'])
+  router.post('/login', [AuthController, 'loginUser'])
+})
+
+router.group(() => {
   router.get('/banners', [BannersController, 'getAllBanner'])
   router.get('/articles', [ArticlesController, 'getAllArticle'])
   router.get('/services', [ThriveInServicesController, 'getAllServiceCategory'])
