@@ -38,13 +38,13 @@ export default class OrderService {
         order_request.service_id
       )
 
-      const rand = `${new Date()}-${randomUUID()}`
+      const rand = `${new Date().getMilliseconds()}-${randomUUID()}`
 
       const user = await User.findBy('user_id', 1)
 
       const orderData = {
         title: service?.title ?? '-',
-        transaction_date: DateTime.now(),
+        transaction_date: DateTime.now().toSQL(),
         payment_method: order_request.payment_method,
         total_order: order_request.total_order,
         discount: order_request.discount,
@@ -71,7 +71,7 @@ export default class OrderService {
         title: orderData.title,
         total_pay: orderData.total_pay,
         user_id: orderData.user_id,
-        transaction_date: orderData.transaction_date,
+        transaction_date: orderData.transaction_date as any,
       })
 
       return order
