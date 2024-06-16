@@ -1,7 +1,6 @@
 import Order from '#models/order'
 import ThriveInService from '#models/thrive_in_service'
 import OrderRequest from '#models/request/order_request'
-import { DateTime } from 'luxon'
 import { randomUUID } from 'node:crypto'
 import ItemService from '#models/item_service'
 import User from '#models/user'
@@ -76,6 +75,49 @@ export default class OrderService {
     } catch (error) {
       console.log('====================================')
       console.log('ERROR ORDER -> ', error)
+      console.log('====================================')
+      throw error
+    }
+  }
+
+  orderHistories = async () => {
+    try {
+      const histories = await Order.all()
+
+      return {
+        history_order: histories,
+      }
+    } catch (error) {
+      console.log('====================================')
+      console.log('ERROR HISTORY ORDER -> ', error)
+      console.log('====================================')
+      throw error
+    }
+  }
+
+  orderHistoryById = async (order_id: number) => {
+    try {
+      const history = await Order.findBy('order_id', order_id)
+      const service = await ThriveInService.findBy('service_id', history?.service_id)
+      return {
+        order_id: history?.order_id ?? null,
+        service_id: history?.service_id ?? null,
+        user_id: history?.user_id ?? null,
+        icon_url: service?.icon_url,
+        transaction_date: history?.transaction_date ?? null,
+        address: history?.address ?? null,
+        discount: history?.discount ?? null,
+        title: history?.title ?? null,
+        total_order: history?.total_order ?? null,
+        total_pay: history?.total_pay ?? null,
+        name: history?.name ?? null,
+        invoice: history?.invoice ?? null,
+        payment_method: history?.payment_method ?? null,
+        status: history?.status ?? null,
+      }
+    } catch (error) {
+      console.log('====================================')
+      console.log('ERROR HISTORY ORDER -> ', error)
       console.log('====================================')
       throw error
     }

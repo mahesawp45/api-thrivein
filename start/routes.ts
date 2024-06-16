@@ -41,6 +41,8 @@ router.group(() => {
 router.group(() => {
   router.get('/order-packages/:service_id', [OrdersController, 'getOrder'])
   router.post('/order-now', [OrdersController, 'orderNow'])
+  router.get('/history-order', [OrdersController, 'getHistoryOrder'])
+  router.get('/history-order/:order_id', [OrdersController, 'getHistoryOrderById'])
 })
 
 // Admin
