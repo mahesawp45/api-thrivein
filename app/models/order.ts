@@ -3,22 +3,19 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 
 export default class Order extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  declare order_id: number
 
   @column()
   declare address: string
 
   @column()
-  declare service_id: string
+  declare service_id: number
 
   @column()
   declare discount: number
 
   @column()
   declare is_order_now: boolean
-
-  @column()
-  declare order_id: string
 
   @column()
   declare payment_method: string
@@ -39,7 +36,7 @@ export default class Order extends BaseModel {
   declare transaction_date: DateTime
 
   @column()
-  declare user_id: string
+  declare user_id: number
 
   @column()
   declare name: string

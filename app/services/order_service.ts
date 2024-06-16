@@ -4,6 +4,7 @@ import OrderRequest from '#models/request/order_request'
 import { DateTime } from 'luxon'
 import { randomUUID } from 'node:crypto'
 import ItemService from '#models/item_service'
+import User from '#models/user'
 
 export default class OrderService {
   getOrder = async (service_id: number): Promise<any> => {
@@ -39,8 +40,9 @@ export default class OrderService {
 
       const rand = `${new Date()}-${randomUUID()}`
 
+      const user = await User.findBy('user_id', 1)
+
       const orderData = {
-        order_id: `${rand}`,
         title: service?.title ?? '-',
         transaction_date: DateTime.now(),
         payment_method: order_request.payment_method,
@@ -48,15 +50,29 @@ export default class OrderService {
         discount: order_request.discount,
         total_pay: order_request.total_pay,
         is_order_now: true,
-        address: '',
+        address: user?.address,
         status: 'baru',
-        user_id: '',
+        user_id: user?.user_id,
         service_id: order_request.service_id,
-        name: '',
+        name: user?.name,
         invoice: `INV-${rand}`,
       }
 
-      const order: Order = await Order.create(orderData)
+      const order: Order = await Order.create({
+        address: orderData.address,
+        discount: orderData.discount,
+        invoice: orderData.invoice,
+        is_order_now: orderData.is_order_now,
+        total_order: orderData.total_order,
+        name: orderData.name,
+        payment_method: orderData.payment_method,
+        service_id: orderData.service_id,
+        status: orderData.status,
+        title: orderData.title,
+        total_pay: orderData.total_pay,
+        user_id: orderData.user_id,
+        transaction_date: orderData.transaction_date,
+      })
 
       return order
     } catch (error) {
