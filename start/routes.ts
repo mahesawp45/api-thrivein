@@ -39,7 +39,7 @@ router.group(() => {
 })
 
 router.group(() => {
-  router.post('/order-packages/:service_id', [OrdersController, 'getOrder'])
+  router.get('/order-packages/:service_id', [OrdersController, 'getOrder'])
   router.post('/order-now', [OrdersController, 'orderNow'])
 })
 
