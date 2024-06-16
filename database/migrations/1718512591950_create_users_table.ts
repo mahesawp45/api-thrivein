@@ -15,7 +15,7 @@ export default class extends BaseSchema {
       table.string('store_email').notNullable()
       table.string('store_name').notNullable()
       table.string('store_phone').notNullable()
-      table.string('type').notNullable()
+      table.string('type').nullable()
 
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()

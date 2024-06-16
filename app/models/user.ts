@@ -45,7 +45,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare store_phone: string
 
   @column()
-  declare type: string
+  declare type?: string | null
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

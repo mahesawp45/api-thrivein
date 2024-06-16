@@ -36,7 +36,7 @@ export default class AuthController {
         'store_email',
         'store_name',
         'store_phone',
-        'type',
+        'store_type',
       ]
 
       const userDetails = request.only(fields)
