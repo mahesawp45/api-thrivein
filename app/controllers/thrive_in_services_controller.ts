@@ -1,7 +1,5 @@
 // import type { HttpContext } from '@adonisjs/core/http'
 
-import ItemService from '#models/item_service'
-import ItemServiceRequest from '#models/request/item_service_request'
 import ThriveInServiceService from '#services/thrive_in_service'
 import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
