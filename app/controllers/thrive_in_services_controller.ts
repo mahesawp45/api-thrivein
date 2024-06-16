@@ -1,5 +1,7 @@
 // import type { HttpContext } from '@adonisjs/core/http'
 
+import ItemService from '#models/item_service'
+import ItemServiceRequest from '#models/request/item_service_request'
 import ThriveInServiceService from '#services/thrive_in_service'
 import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
@@ -68,5 +70,17 @@ export default class ThriveInServicesController {
       params.page
     )
     return data
+  }
+
+  createItemService = async ({ request, response }: HttpContext) => {
+    try {
+      const itemRequest = request.only(['service_id', 'image_url', 'price', 'title', 'qty'])
+      const item = await this.thriveInServiceService.createItemService({
+        ...itemRequest,
+      } as any)
+      return response.status(201).json(item)
+    } catch (error) {
+      return response.status(400).json({ message: error.message })
+    }
   }
 }

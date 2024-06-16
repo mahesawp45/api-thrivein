@@ -39,6 +39,7 @@ router.group(() => {
 })
 
 router.group(() => {
+  router.post('/order-packages/:service_id', [OrdersController, 'getOrder'])
   router.post('/order-now', [OrdersController, 'orderNow'])
 })
 
@@ -54,4 +55,5 @@ router.group(() => {
   router.post('/create-banner', [BannersController, 'createBanner'])
   router.post('/create-article', [ArticlesController, 'createArticle'])
   router.post('/create-service', [ThriveInServicesController, 'createService'])
+  router.post('/create-item-service', [ThriveInServicesController, 'createItemService'])
 })

@@ -1,4 +1,6 @@
+import ItemService from '#models/item_service'
 import CategoryRequest from '#models/request/category_request'
+import ItemServiceRequest from '#models/request/item_service_request'
 import ThriveInServiceRequest from '#models/request/service_request'
 import ThriveInCategoryService from '#models/thrive_in_category_service'
 import ThriveInPorfolioService from '#models/thrive_in_porfolio_service'
@@ -99,6 +101,25 @@ export default class ThriveInServiceService {
       return portofolio
     } catch (error) {
       console.error('Error Get Portfolio:', error)
+      throw error
+    }
+  }
+
+  createItemService = async (request: ItemServiceRequest): Promise<ItemService> => {
+    try {
+      const item: ItemService = await ItemService.create({
+        service_id: request.service_id,
+        image_url: request.image_url,
+        price: request.price,
+        qty: request.price,
+        title: request.title,
+      })
+
+      return item
+    } catch (error) {
+      console.log('====================================')
+      console.log('ERROR ADD ITEM SERVICE -> ', error)
+      console.log('====================================')
       throw error
     }
   }
