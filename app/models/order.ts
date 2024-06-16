@@ -32,8 +32,8 @@ export default class Order extends BaseModel {
   @column()
   declare total_pay: number
 
-  @column()
-  declare transaction_date: DateTime
+  @column.dateTime({ autoCreate: true })
+  declare transaction_date?: DateTime | null
 
   @column()
   declare user_id: number

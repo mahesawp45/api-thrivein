@@ -18,9 +18,9 @@ export default class extends BaseSchema {
       table.string('title').notNullable()
       table.integer('total_order').notNullable()
       table.integer('total_pay').notNullable()
-      table.timestamp('transaction_date', { useTz: true }).notNullable()
-      table.timestamp('created_at', { useTz: true }).defaultTo(this.now())
-      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now())
+      table.timestamp('transaction_date', { useTz: true }).nullable().defaultTo(this.now())
+      table.timestamp('created_at', { useTz: true }).nullable().defaultTo(this.now())
+      table.timestamp('updated_at', { useTz: true }).nullable().defaultTo(this.now())
     })
   }
 

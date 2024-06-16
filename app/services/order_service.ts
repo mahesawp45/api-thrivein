@@ -44,7 +44,6 @@ export default class OrderService {
 
       const orderData = {
         title: service?.title ?? '-',
-        transaction_date: DateTime.now().toSQL(),
         payment_method: order_request.payment_method,
         total_order: order_request.total_order,
         discount: order_request.discount,
@@ -71,7 +70,6 @@ export default class OrderService {
         title: orderData.title,
         total_pay: orderData.total_pay,
         user_id: orderData.user_id,
-        transaction_date: orderData.transaction_date as any,
       })
 
       return order
